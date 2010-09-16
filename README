@@ -1,0 +1,37 @@
+JQuery Blueprint is an ultra-lightweight, simple, javascript templating framework.
+
+Usage
+-----------
+
+The HTML:
+<ul id='my_list'></ul>
+
+<div class="blueprint" templateid="list_link">
+ <li>
+   <a href='@#url#@'>@#link_text#@</a>
+ </li>
+</div>
+
+First we have a ul (#my_list), into which we want to put our template, the template is wrapped in a div, the class we'll
+use as a jquery selector, and the templateid is how we'll refer to this template when we want to render it. Variables start
+with @# and end with #@, so to make a variable called color we would write @#color#@. 
+
+The javascript:
+
+var urls = [
+  { url : 'http://www.yahoo.com',   link_text : 'Yahoo' },
+  { url : 'http://www.google.com',  link_text : 'Google' },
+  { url : 'http://www.bing.com',    link_text : 'Bing' }
+];
+
+$(function() {
+  $('.blueprint').blueprint();
+  
+  for (url in urls) {
+    $('#my_list').blueprint('render','list_link',urls[url]);
+  }
+});
+
+First we define our data, in this case just a list of search engines. Then in the jquery ready, we create our blueprints
+by calling blueprint on any element with the class 'blueprint' then for each url in the list, we render the template called 
+'list_link' into our ul (#my_list), with the data from our urls.

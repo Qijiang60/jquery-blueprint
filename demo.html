@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>jQuery Blueprint Demo</title>
+ 
+ <!-- We want to make sure that the template is hidden, so that it doesn't show before blueprint can remove it. -->
+ <style type="text/css" media="screen">
+  .blueprint {
+    display: none;
+  }
+ </style>
+ 
+ <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+ <script type="text/javascript" src="jquery.blueprint.js"></script>
+ 
+ <script type="text/javascript" charset="utf-8">
+  // Our list of urls, this data will be injected into the template.
+  var urls = [
+    { url : 'http://www.yahoo.com',   link_text : 'Yahoo' },
+    { url : 'http://www.google.com',  link_text : 'Google' },
+    { url : 'http://www.bing.com',    link_text : 'Bing' }
+  ];
+ 
+  $(function() {
+    $('.blueprint').blueprint();
+    
+    for (url in urls) {
+      $('#my_list').blueprint('render','list_link',urls[url]);
+    }
+  });
+ </script>
+ 
+</head>
+
+ <body>
+  
+  <!-- List into which the links will be inserted --> 
+  <ul id='my_list'></ul>
+  
+  <!-- div wrapper for the list_link template --> 
+  <div class="blueprint" templateid="list_link">
+   <li>
+     <a href='@#url#@'>@#link_text#@</a>
+   </li>
+  </div>
+  
+ </body>
+</html>
