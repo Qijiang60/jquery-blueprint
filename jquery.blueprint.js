@@ -1,3 +1,17 @@
+/*
+ * Blueprint - jQuery Plugin
+ * An ultra-lightweight, simple, javascript templating framework.
+ *
+ * Examples and documentation at: http://github.com/bunchesofdonald/jquery-blueprint
+ * 
+ * Copyright (c) 2010 Chris Pickett
+ *
+ * Version: 0.1 (09/16/2010)
+ *
+ * Licensed under MIT:
+ *   http://www.opensource.org/licenses/mit-license.php
+ */
+
 (function( $ ){
   var blueprints  = {};
   
