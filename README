@@ -31,3 +31,9 @@ $(function() {
 });
 
 First we define our data, in this case just a list of search engines. Then in the jquery ready, we create our blueprints by calling blueprint on any element with the class 'blueprint' then for each url in the list, we render the template called 'list_link' into our ul (#my_list), with the data from our urls.
+
+REVISION HISTORY
+----------------
+Version 0.2: Retooled template parsing engine, rather than using regex when rendering, it now uses a state machine to parse the template upfront, resulting in a 27% decrease in rendering time. (98ms avg for 1000 calls, versus 71ms).
+
+Version 0.1: Initial Release
