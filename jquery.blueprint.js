@@ -6,7 +6,7 @@
  * 
  * Copyright (c) 2010 Chris Pickett (chris.pickett@gmail.com)
  * 
- * Version: 0.2 (09/21/2010)
+ * Version: 0.3 (10/06/2010)
  *
  * Licensed under MIT:
  *   http://www.opensource.org/licenses/mit-license.php
@@ -81,13 +81,21 @@ function parse_blueprint(html) {
       });
     },
     
-    render  : function( blueprint_name, data ) {
+    render : function( blueprint_name, data ) {
       var out = [];
       var out_index = 0;
       
       for(var i = 0; i < blueprints[blueprint_name]['size']; i++) {
           out[out_index] = blueprints[blueprint_name]['parts'][i];
-          out[out_index+1] = data[blueprints[blueprint_name]['vars'][i]]
+         
+          var value = data;
+          var var_parts = blueprints[blueprint_name]['vars'][i].split('.');
+          
+          for(var j = 0; j < var_parts.length; j++) {
+              value = value[var_parts[j]];
+          }
+          
+          out[out_index+1] = value;
           out_index += 2;
       }
       
