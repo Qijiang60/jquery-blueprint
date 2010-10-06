@@ -34,6 +34,8 @@ First we define our data, in this case just a list of search engines. Then in th
 
 REVISION HISTORY
 ----------------
+Version 0.3: Added the ability to use compound variables. For example, if you had an object such as: data = { authors: {first_name: 'Ted', last_name: 'Jones'} }; and you wanted to get to the authors names in a template you would write your template with the variable names: @#author.first_name#@ and @#author.last_name#@. When render is passed that data object the template will be rendered with Ted Jones.
+
 Version 0.2: Retooled template parsing engine, rather than using regex when rendering, it now uses a state machine to parse the template upfront, resulting in a 27% decrease in rendering time. (98ms avg for 1000 calls, versus 71ms).
 
 Version 0.1: Initial Release
