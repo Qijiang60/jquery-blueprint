@@ -54,8 +54,8 @@ function parse_blueprint(html) {
      }
   }
   
-  if(tmp != '') { blueprint_parts[part_index] = tmp; }
-  if(var_name != '') { blueprint_vars[var_index] = var_name; }
+  if(tmp != '') { blueprint_parts[part_index] = tmp; part_index++;}
+  if(var_name != '') { blueprint_vars[var_index] = var_name; var_index++;}
   
   blueprint['parts'] = blueprint_parts;
   blueprint['vars'] = blueprint_vars;
@@ -87,16 +87,21 @@ function parse_blueprint(html) {
       
       for(var i = 0; i < blueprints[blueprint_name]['size']; i++) {
           out[out_index] = blueprints[blueprint_name]['parts'][i];
+          out_index++;
          
           var value = data;
-          var var_parts = blueprints[blueprint_name]['vars'][i].split('.');
+          var var_name = blueprints[blueprint_name]['vars'][i];
           
-          for(var j = 0; j < var_parts.length; j++) {
-              value = value[var_parts[j]];
+          if(var_name) {  
+              var_parts = var_name.split('.');
+              
+              for(var j = 0; j < var_parts.length; j++) {
+                  value = value[var_parts[j]];
+              }
+
+              out[out_index] = value;
+              out_index++;
           }
-          
-          out[out_index+1] = value;
-          out_index += 2;
       }
       
       $(this).append(out.join(''));
